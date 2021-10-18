@@ -12,13 +12,13 @@
         <div class="small-6 columns">
           <h1 class="text-center">SEN</h1>
           <div class="healthbar">
-            <div class="healthbar text-center" style="background-color: green; margin: 0; color: white"></div>
+            <div :style="player_progress" class="healthbar text-center" style="background-color: green; margin: 0; color: white">{{player_heal}}%</div>
           </div>
         </div>
         <div class="small-6 columns">
           <h1 class="text-center">CANAVAR</h1>
           <div class="healthbar">
-            <div class="healthbar text-center" style="background-color: green; margin: 0; color: white"></div>
+            <div :style="monster_progress" class="healthbar text-center" style="background-color: green; margin: 0; color: white">{{monster_heal}}%</div>
           </div>
         </div>
       </section>
@@ -37,10 +37,10 @@
         </div>
       </section>
 
-      <section class="row log" v-if="game_is_on">
+      <section class="row log" v-if="logs.length>0">
         <div class="small-12 columns">
           <ul>
-            <li></li>
+            <li :class="{ 'player-turn' : log.turn == 'P', 'monster-turn' : log.turn == 'M'}" v-for="log in logs">{{log.text}}</li>
           </ul>
         </div>
       </section>
